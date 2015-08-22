@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!--
+     Simple demo project demonstrating the usage of rhuss/docker-maven-plugin
+  -->
+  <groupId>com.github.mgurov</groupId>
+  <artifactId>docker-maven-runs</artifactId>
+  <version>0.0.1</version>
+  <packaging>pom</packaging>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jolokia</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <version>0.13.3</version>
+        <configuration>
+          <images>
+
+            <image>
+              <name>debian:jessie</name>
+              <build>
+                <entryPoint>
+                  <shell>echo build entrypoint shell</shell>
+                </entryPoint>
+              </build>
+              <run>
+                <log>
+                  <enabled>true</enabled>
+                  <prefix>BES</prefix>
+                </log>
+                <wait>
+                  <log>build entrypoint shell</log>
+                </wait>
+              </run>
+            </image>
+
+            <image>
+              <name>debian:jessie</name>
+              <build>
+                <entryPoint>
+                  <exec>
+                    <arg>echo</arg>
+                    <arg>build</arg>
+                    <arg>entrypoint</arg>
+                    <arg>exec</arg>
+                  </exec>
+                </entryPoint>
+              </build>
+              <run>
+                <log>
+                  <enabled>true</enabled>
+                  <prefix>BEE</prefix>
+                </log>
+                <wait>
+                  <log>build entrypoint exec</log>
+                </wait>
+              </run>
+            </image>
+
+          </images>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
