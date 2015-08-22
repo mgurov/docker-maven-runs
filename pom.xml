@@ -28,15 +28,15 @@
               <name>debian:jessie</name>
               <build>
                 <entryPoint>
-                  <shell>echo build entrypoint shell</shell>
+                  <shell>echo container A</shell>
                 </entryPoint>
               </build>
               <run>
                 <log>
-                  <prefix>BES</prefix>
+                  <prefix>A</prefix>
                 </log>
                 <wait>
-                  <log>build entrypoint shell</log>
+                  <log>container A</log>
                 </wait>
               </run>
             </image>
@@ -45,20 +45,15 @@
               <name>debian:jessie</name>
               <build>
                 <entryPoint>
-                  <exec>
-                    <arg>echo</arg>
-                    <arg>build</arg>
-                    <arg>entrypoint</arg>
-                    <arg>exec</arg>
-                  </exec>
+                  <shell>echo container B</shell>
                 </entryPoint>
               </build>
               <run>
                 <log>
-                  <prefix>BEE</prefix>
+                  <prefix>B</prefix>
                 </log>
                 <wait>
-                  <log>build entrypoint exec</log>
+                  <log>container B</log>
                 </wait>
               </run>
             </image>
