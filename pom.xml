@@ -33,7 +33,6 @@
               </build>
               <run>
                 <log>
-                  <enabled>true</enabled>
                   <prefix>BES</prefix>
                 </log>
                 <wait>
@@ -56,7 +55,6 @@
               </build>
               <run>
                 <log>
-                  <enabled>true</enabled>
                   <prefix>BEE</prefix>
                 </log>
                 <wait>
