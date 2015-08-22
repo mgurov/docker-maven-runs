@@ -58,6 +58,33 @@
               </run>
             </image>
 
+            <image>
+              <name>ubuntu:14.04</name>
+              <run>
+                <entrypoint>echo container C</entrypoint>
+                <log>
+                  <prefix>C</prefix>
+                </log>
+                <wait>
+                  <log>container C</log>
+                </wait>
+              </run>
+            </image>
+
+            <image>
+              <name>ubuntu:14.04</name>
+              <run>
+                <entrypoint>echo container D</entrypoint>
+                <log>
+                  <prefix>D</prefix>
+                </log>
+                <wait>
+                  <log>container D</log>
+                </wait>
+              </run>
+            </image>
+
+
           </images>
         </configuration>
       </plugin>
