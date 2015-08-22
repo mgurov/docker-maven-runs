@@ -25,7 +25,7 @@
           <images>
 
             <image>
-              <name>debian:jessie</name>
+              <name>local/a</name>
               <build>
                 <entryPoint>
                   <shell>echo container A</shell>
@@ -42,7 +42,7 @@
             </image>
 
             <image>
-              <name>debian:jessie</name>
+              <name>local/b</name>
               <build>
                 <entryPoint>
                   <shell>echo container B</shell>
