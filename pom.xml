@@ -182,6 +182,45 @@ ok, but problems with stopping most of the time.
             </image>
 
 -->
+   <!-- better config -->
+
+            <image>
+              <name>local/besi</name>
+              <build>
+                <entryPoint>echo build entrypoint shell inlined</entryPoint>
+              </build>
+              <run>
+                <log>
+                  <prefix>BESI</prefix>
+                </log>
+                <wait>
+                  <log>build entrypoint shell inlined</log>
+                </wait>
+              </run>
+            </image>
+
+            <image>
+              <name>local/beei</name>
+              <build>
+                <entryPoint>
+                  <arg>echo</arg>
+                  <arg>build</arg>
+                  <arg>entrypoint</arg>
+                  <arg>exec</arg>
+                  <arg>inlined</arg>
+                </entryPoint>
+              </build>
+              <run>
+                <log>
+                  <prefix>BEEI</prefix>
+                </log>
+                <wait>
+                  <log>build entrypoint exec inlined</log>
+                </wait>
+              </run>
+            </image>
+
+            <!-- TODO: test for shell inlined and explicit + exec inlined and explicit -->
 
           </images>
         </configuration>
