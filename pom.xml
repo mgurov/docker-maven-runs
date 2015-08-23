@@ -160,8 +160,6 @@
             -->
             <!-- FAIL expected -->
 <!--
-  fails as either shell or command
-
             <image>
               <name>local/shellandexec</name>
               <build>
