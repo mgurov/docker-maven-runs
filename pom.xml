@@ -144,8 +144,9 @@
               </run>
             </image>
 
+            <!-- ok, but problems with stopping most of the time. -->
             <!--
-            ok, but problems with stopping most of the time.
+
                         <image>
                           <name>busybox</name>
                           <run>
@@ -157,6 +158,7 @@
                           </run>
                         </image>
             -->
+            <!-- FAIL expected -->
 <!--
   fails as either shell or command
 
@@ -181,6 +183,7 @@
               </run>
             </image>
 -->
+            <!-- FAIL expected -->
 <!--
             either shell or cmd, but happens after the build already has started
             <image>
@@ -237,6 +240,7 @@
 
             <!-- TODO: test for shell inlined and explicit + exec inlined and explicit -->
 
+            <!-- FAIL expected -->
 <!--
             <image>
               <name>local/besi-twice</name>
@@ -258,6 +262,7 @@
             </image>
 -->
 
+            <!-- FAIL expected -->
 <!--
             <image>
               <name>local/beei-twice</name>
