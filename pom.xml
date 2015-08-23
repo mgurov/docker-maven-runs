@@ -63,6 +63,19 @@
               </run>
             </image>
 
+            <image>
+              <name>busybox</name>
+              <run>
+                <entrypoint>echo run entrypoint shell inline</entrypoint>
+                <log>
+                  <prefix>RESI</prefix>
+                </log>
+                <wait>
+                  <log>run entrypoint shell inline</log>
+                </wait>
+              </run>
+            </image>
+
           </images>
         </configuration>
       </plugin>
