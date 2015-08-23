@@ -185,7 +185,6 @@
 -->
             <!-- FAIL expected -->
 <!--
-            either shell or cmd, but happens after the build already has started
             <image>
               <name>local/emptyshell</name>
               <build>
@@ -198,8 +197,8 @@
                 </log>
               </run>
             </image>
-
 -->
+
    <!-- better config -->
 
             <image>
