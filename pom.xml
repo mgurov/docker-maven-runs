@@ -64,6 +64,45 @@
             </image>
 
             <image>
+              <name>local/bcs</name>
+              <build>
+                <cmd>
+                  <shell>echo build cmd shell</shell>
+                </cmd>
+              </build>
+              <run>
+                <log>
+                  <prefix>BCS</prefix>
+                </log>
+                <wait>
+                  <log>build cmd shell</log>
+                </wait>
+              </run>
+            </image>
+
+            <image>
+              <name>local/bce</name>
+              <build>
+                <cmd>
+                  <exec>
+                    <arg>echo</arg>
+                    <arg>build</arg>
+                    <arg>cmd</arg>
+                    <arg>exec</arg>
+                  </exec>
+                </cmd>
+              </build>
+              <run>
+                <log>
+                  <prefix>BCE</prefix>
+                </log>
+                <wait>
+                  <log>build cmd exec</log>
+                </wait>
+              </run>
+            </image>
+
+            <image>
               <name>busybox</name>
               <run>
                 <entrypoint>echo run entrypoint shell inline</entrypoint>
