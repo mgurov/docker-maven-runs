@@ -144,20 +144,30 @@
               </run>
             </image>
 
-            <!-- ok, but problems with stopping most of the time. -->
-            <!--
+            <image>
+              <name>busybox</name>
+              <run>
+                <log>
+                  <prefix>NOOP</prefix>
+                </log>
+              </run>
+            </image>
 
-                        <image>
-                          <name>busybox</name>
-                          <run>
-                            <entrypoint></entrypoint>
-                            <cmd></cmd>
-                            <log>
-                              <prefix>empty_cmd</prefix>
-                            </log>
-                          </run>
-                        </image>
-            -->
+
+            <!-- validation FAIL expected -->
+
+<!--
+          <image>
+            <name>busybox</name>
+            <run>
+              <entrypoint></entrypoint>
+              <cmd></cmd>
+              <log>
+                <prefix>empty_cmd</prefix>
+              </log>
+            </run>
+          </image>
+-->
             <!-- validation FAIL expected -->
 <!--
             <image>
