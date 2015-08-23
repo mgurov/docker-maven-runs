@@ -238,17 +238,12 @@
               </run>
             </image>
 
-            <!-- TODO: test for shell inlined and explicit + exec inlined and explicit -->
-
-            <!-- FAIL expected -->
-<!--
             <image>
               <name>local/besi-twice</name>
               <build>
                 <entryPoint>
-
-                  <shell>echo twice</shell>
                   echo build entrypoint shell inlined
+                  <shell>echo inlined shell ignored</shell>
                 </entryPoint>
               </build>
               <run>
@@ -256,11 +251,10 @@
                   <prefix>BESI-TWICE</prefix>
                 </log>
                 <wait>
-                  <log>build entrypoint shell inlined echo twice</log>
+                  <log>inlined shell ignored</log>
                 </wait>
               </run>
             </image>
--->
 
             <!-- FAIL expected -->
 <!--
