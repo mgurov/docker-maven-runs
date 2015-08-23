@@ -237,6 +237,49 @@
 
             <!-- TODO: test for shell inlined and explicit + exec inlined and explicit -->
 
+<!--
+            <image>
+              <name>local/besi-twice</name>
+              <build>
+                <entryPoint>
+
+                  <shell>echo twice</shell>
+                  echo build entrypoint shell inlined
+                </entryPoint>
+              </build>
+              <run>
+                <log>
+                  <prefix>BESI-TWICE</prefix>
+                </log>
+                <wait>
+                  <log>build entrypoint shell inlined echo twice</log>
+                </wait>
+              </run>
+            </image>
+-->
+
+<!--
+            <image>
+              <name>local/beei-twice</name>
+              <build>
+                <entryPoint>
+                  <exec>
+                    <arg>echo build entrypoint exec inlined</arg>
+                  </exec>
+                  <arg>echo twice</arg>
+                </entryPoint>
+              </build>
+              <run>
+                <log>
+                  <prefix>BESI-TWICE</prefix>
+                </log>
+                <wait>
+                  <log>build entrypoint shell inlined echo twice</log>
+                </wait>
+              </run>
+            </image>
+-->
+
           </images>
         </configuration>
       </plugin>
