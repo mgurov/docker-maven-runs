@@ -129,6 +129,20 @@
               </run>
             </image>
 
+<!--
+ok, but problems with stopping most of the time.
+            <image>
+              <name>busybox</name>
+              <run>
+                <entrypoint></entrypoint>
+                <cmd></cmd>
+                <log>
+                  <prefix>empty_cmd</prefix>
+                </log>
+              </run>
+            </image>
+-->
+
           </images>
         </configuration>
       </plugin>
