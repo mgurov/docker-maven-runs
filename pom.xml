@@ -115,6 +115,20 @@
               </run>
             </image>
 
+
+            <image>
+              <name>busybox</name>
+              <run>
+                <cmd>echo run cmd shell inline</cmd>
+                <log>
+                  <prefix>RCSI</prefix>
+                </log>
+                <wait>
+                  <log>run cmd shell inline</log>
+                </wait>
+              </run>
+            </image>
+
           </images>
         </configuration>
       </plugin>
