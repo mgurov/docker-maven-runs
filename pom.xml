@@ -142,6 +142,46 @@ ok, but problems with stopping most of the time.
               </run>
             </image>
 -->
+<!--
+  fails as either shell or command
+            <image>
+              <name>local/shellandexec</name>
+              <build>
+                <entryPoint>
+                  <shell>echo build entrypoint shell</shell>
+                  <exec>
+                    <arg>shellandexec</arg>
+                    <arg>b</arg>
+                  </exec>
+                </entryPoint>
+              </build>
+              <run>
+                <log>
+                  <prefix>shellandexec</prefix>
+                </log>
+                <wait>
+                  <log>shellandexec</log>
+                </wait>
+              </run>
+            </image>
+-->
+
+<!--
+            either shell or cmd, but happens after the build already has started
+            <image>
+              <name>local/emptyshell</name>
+              <build>
+                <entryPoint>
+                </entryPoint>
+              </build>
+              <run>
+                <log>
+                  <prefix>emptyshell</prefix>
+                </log>
+              </run>
+            </image>
+
+-->
 
           </images>
         </configuration>
