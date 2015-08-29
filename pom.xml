@@ -39,7 +39,9 @@
                   <prefix>BES</prefix>
                 </log>
                 <wait>
-                  <log>hello</log>
+                  <not>
+                    <log>fooe</log>
+                  </not>
                 </wait>
               </run>
             </image>
