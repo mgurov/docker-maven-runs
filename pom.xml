@@ -194,7 +194,6 @@
               </run>
             </image>
 
-            <!-- validation FAIL expected -->
             <image>
               <alias>fail-on-build-entrypoint-both-shell-and-exec</alias>
               <name>maven:3.2.3-jdk-7</name>
@@ -270,28 +269,25 @@
               </run>
             </image>
 
-            <!-- validation FAIL expected -->
-<!--
             <image>
-              <name>local/beei-twice</name>
-              <build>
-                <entryPoint>
-                  <exec>
-                    <arg>echo build entrypoint exec inlined</arg>
-                  </exec>
-                  <arg>echo twice</arg>
-                </entryPoint>
-              </build>
+              <alias>build-entrypoint-exec-both-inlined-and-full</alias>
+              <name>maven:3.2.3-jdk-7</name>
               <run>
-                <log>
-                  <prefix>BESI-TWICE</prefix>
-                </log>
+                <cmd>mvn docker:build</cmd>
+                <log/>
                 <wait>
-                  <log>build entrypoint shell inlined echo twice</log>
+                  <log>failed: Argument conflict: either shell or args should be specified and only in one form.</log>
                 </wait>
+                <volumes>
+                  <bind>
+                    <volume>${project.basedir}/expected-to-fail/build-entrypoint-exec-both-inlined-and-full.pom.xml:/work/pom.xml</volume>
+                    <volume>${settings.localRepository}:/root/.m2/repository/</volume>
+                  </bind>
+                </volumes>
+                <workingDir>/work</workingDir>
               </run>
             </image>
--->
+
 
             <!-- validation FAIL expected -->
 <!--
