@@ -25,6 +25,7 @@
           <images>
 
 
+<!--
           <image>
             <name>busybox</name>
             <run>
@@ -35,6 +36,7 @@
               </log>
             </run>
           </image>
+-->
 
 
             <!-- validation FAIL expected -->
