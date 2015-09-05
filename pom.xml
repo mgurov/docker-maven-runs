@@ -167,7 +167,7 @@
                 </wait>
                 <volumes>
                   <bind>
-                    <volume>${project.basedir}/expected-to-fail/fail-on-empty-run-cmd.pom.xml:/work/pom.xml</volume>
+                    <volume>${project.basedir}/expected-to-fail/empty-run-cmd.pom.xml:/work/pom.xml</volume>
                     <volume>${settings.localRepository}:/root/.m2/repository/</volume>
                   </bind>
                 </volumes>
@@ -186,7 +186,7 @@
                 </wait>
                 <volumes>
                   <bind>
-                    <volume>${project.basedir}/expected-to-fail/fail-on-empty-run-entrypoint.pom.xml:/work/pom.xml</volume>
+                    <volume>${project.basedir}/expected-to-fail/empty-run-entrypoint.pom.xml:/work/pom.xml</volume>
                     <volume>${settings.localRepository}:/root/.m2/repository/</volume>
                   </bind>
                 </volumes>
