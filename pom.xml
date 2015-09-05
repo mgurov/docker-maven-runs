@@ -288,31 +288,6 @@
               </run>
             </image>
 
-
-            <!-- validation FAIL expected -->
-<!--
-            <image>
-              <name>local/reei-twice</name>
-              <build>
-              </build>
-              <run>
-                <entrypoint>
-                  <exec>
-                    <arg>echo</arg>
-                    <arg>build entrypoint exec inlined</arg>
-                  </exec>
-                  <arg>echo twice</arg>
-                </entrypoint>
-                <log>
-                  <prefix>REEI-TWICE</prefix>
-                </log>
-                <wait>
-                  <log>build entrypoint exec inlined echo twice</log>
-                </wait>
-              </run>
-            </image>
--->
-
           </images>
         </configuration>
       </plugin>
