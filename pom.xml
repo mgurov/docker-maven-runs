@@ -156,18 +156,25 @@
 
             <!-- validation FAIL expected -->
 
-<!--
-          <image>
-            <name>busybox</name>
-            <run>
-              <entrypoint></entrypoint>
-              <cmd></cmd>
-              <log>
-                <prefix>empty_cmd</prefix>
-              </log>
-            </run>
-          </image>
--->
+            <image>
+              <alias>fail-on-empty-run-cmd</alias>
+              <name>maven:3.2.3-jdk-7</name>
+              <run>
+                <cmd>mvn docker:start docker:stop</cmd>
+                <log><prefix>blahblah</prefix></log>
+                <wait>
+                  <log>failed: Argument conflict: either shell or args should be specified and only in one form.</log>
+                </wait>
+                <volumes>
+                  <bind>
+                    <volume>${project.basedir}/expected-to-fail:/work</volume>
+                    <volume>${settings.localRepository}:/root/.m2/repository/</volume>
+                  </bind>
+                </volumes>
+                <workingDir>/work</workingDir>
+              </run>
+            </image>
+
             <!-- validation FAIL expected -->
 <!--
             <image>
