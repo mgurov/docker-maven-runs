@@ -24,70 +24,28 @@
         <configuration>
           <images>
 
+
             <!-- validation FAIL expected -->
-<!--
             <image>
-              <name>local/emptyshell</name>
+              <name>local/shellandexec</name>
               <build>
                 <entryPoint>
+                  <shell>echo build entrypoint shell</shell>
+                  <exec>
+                    <arg>shellandexec</arg>
+                    <arg>b</arg>
+                  </exec>
                 </entryPoint>
               </build>
               <run>
                 <log>
-                  <prefix>emptyshell</prefix>
-                </log>
-              </run>
-            </image>
--->
-
-
-            <!-- validation FAIL expected -->
-<!--
-            <image>
-              <name>local/beei-twice</name>
-              <build>
-                <entryPoint>
-                  <exec>
-                    <arg>echo build entrypoint exec inlined</arg>
-                  </exec>
-                  <arg>echo twice</arg>
-                </entryPoint>
-              </build>
-              <run>
-                <log>
-                  <prefix>BESI-TWICE</prefix>
+                  <prefix>shellandexec</prefix>
                 </log>
                 <wait>
-                  <log>build entrypoint shell inlined echo twice</log>
+                  <log>shellandexec</log>
                 </wait>
               </run>
             </image>
--->
-
-            <!-- validation FAIL expected -->
-<!--
-            <image>
-              <name>local/reei-twice</name>
-              <build>
-              </build>
-              <run>
-                <entrypoint>
-                  <exec>
-                    <arg>echo</arg>
-                    <arg>build entrypoint exec inlined</arg>
-                  </exec>
-                  <arg>echo twice</arg>
-                </entrypoint>
-                <log>
-                  <prefix>REEI-TWICE</prefix>
-                </log>
-                <wait>
-                  <log>build entrypoint exec inlined echo twice</log>
-                </wait>
-              </run>
-            </image>
--->
-
           </images>
         </configuration>
       </plugin>

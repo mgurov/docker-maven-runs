@@ -195,28 +195,47 @@
             </image>
 
             <!-- validation FAIL expected -->
-<!--
             <image>
-              <name>local/shellandexec</name>
-              <build>
-                <entryPoint>
-                  <shell>echo build entrypoint shell</shell>
-                  <exec>
-                    <arg>shellandexec</arg>
-                    <arg>b</arg>
-                  </exec>
-                </entryPoint>
-              </build>
+              <alias>fail-on-build-entrypoint-both-shell-and-exec</alias>
+              <name>maven:3.2.3-jdk-7</name>
               <run>
-                <log>
-                  <prefix>shellandexec</prefix>
-                </log>
+                <cmd>mvn docker:build</cmd>
+                <log/>
                 <wait>
-                  <log>shellandexec</log>
+                  <log>failed: Argument conflict: either shell or args should be specified and only in one form.</log>
                 </wait>
+                <volumes>
+                  <bind>
+                    <volume>${project.basedir}/expected-to-fail/build-entrypoint-both-shell-and-exec.pom.xml:/work/pom.xml</volume>
+                    <volume>${settings.localRepository}:/root/.m2/repository/</volume>
+                  </bind>
+                </volumes>
+                <workingDir>/work</workingDir>
               </run>
             </image>
--->
+
+            <!--
+                        <image>
+                          <name>local/shellandexec</name>
+                          <build>
+                            <entryPoint>
+                              <shell>echo build entrypoint shell</shell>
+                              <exec>
+                                <arg>shellandexec</arg>
+                                <arg>b</arg>
+                              </exec>
+                            </entryPoint>
+                          </build>
+                          <run>
+                            <log>
+                              <prefix>shellandexec</prefix>
+                            </log>
+                            <wait>
+                              <log>shellandexec</log>
+                            </wait>
+                          </run>
+                        </image>
+            -->
             <!-- validation FAIL expected -->
 <!--
             <image>
