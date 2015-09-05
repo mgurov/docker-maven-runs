@@ -25,20 +25,6 @@
           <images>
 
 
-<!--
-          <image>
-            <name>busybox</name>
-            <run>
-              <entrypoint></entrypoint>
-              <cmd></cmd>
-              <log>
-                <prefix>empty_cmd</prefix>
-              </log>
-            </run>
-          </image>
--->
-
-
             <!-- validation FAIL expected -->
 <!--
             <image>

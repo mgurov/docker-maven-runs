@@ -175,6 +175,25 @@
               </run>
             </image>
 
+            <image>
+              <alias>fail-on-empty-run-entrypoint</alias>
+              <name>maven:3.2.3-jdk-7</name>
+              <run>
+                <cmd>mvn docker:start docker:stop</cmd>
+                <log/>
+                <wait>
+                  <log>failed: Argument conflict: either shell or args should be specified and only in one form.</log>
+                </wait>
+                <volumes>
+                  <bind>
+                    <volume>${project.basedir}/expected-to-fail/fail-on-empty-run-entrypoint.pom.xml:/work/pom.xml</volume>
+                    <volume>${settings.localRepository}:/root/.m2/repository/</volume>
+                  </bind>
+                </volumes>
+                <workingDir>/work</workingDir>
+              </run>
+            </image>
+
             <!-- validation FAIL expected -->
 <!--
             <image>
