@@ -214,44 +214,6 @@
               </run>
             </image>
 
-            <!--
-                        <image>
-                          <name>local/shellandexec</name>
-                          <build>
-                            <entryPoint>
-                              <shell>echo build entrypoint shell</shell>
-                              <exec>
-                                <arg>shellandexec</arg>
-                                <arg>b</arg>
-                              </exec>
-                            </entryPoint>
-                          </build>
-                          <run>
-                            <log>
-                              <prefix>shellandexec</prefix>
-                            </log>
-                            <wait>
-                              <log>shellandexec</log>
-                            </wait>
-                          </run>
-                        </image>
-            -->
-            <!-- validation FAIL expected -->
-<!--
-            <image>
-              <name>local/emptyshell</name>
-              <build>
-                <entryPoint>
-                </entryPoint>
-              </build>
-              <run>
-                <log>
-                  <prefix>emptyshell</prefix>
-                </log>
-              </run>
-            </image>
--->
-
    <!-- better config -->
 
             <image>
