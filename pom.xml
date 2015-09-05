@@ -160,7 +160,7 @@
               <alias>fail-on-empty-run-cmd</alias>
               <name>maven:3.2.3-jdk-7</name>
               <run>
-                <cmd>mvn docker:start docker:stop</cmd>
+                <cmd>mvn docker:start</cmd>
                 <log/>
                 <wait>
                   <log>failed: Argument conflict: either shell or args should be specified and only in one form.</log>
@@ -179,7 +179,7 @@
               <alias>fail-on-empty-run-entrypoint</alias>
               <name>maven:3.2.3-jdk-7</name>
               <run>
-                <cmd>mvn docker:start docker:stop</cmd>
+                <cmd>mvn docker:start</cmd>
                 <log/>
                 <wait>
                   <log>failed: Argument conflict: either shell or args should be specified and only in one form.</log>
