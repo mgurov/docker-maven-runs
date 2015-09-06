@@ -5,4 +5,4 @@ test:
 	 -v /var/run/docker.sock:/var/run/docker.sock \
 	 -v /Users/mgu/.m2/repository/:/root/.m2/repository/ \
 	 -w /work $(MVN_IMAGE) \
-	 mvn verify -Ddocker.maven.image=$(MVN_IMAGE)
+	 mvn verify -Ddocker.maven.image=$(MVN_IMAGE) $(o)
