@@ -26,7 +26,6 @@
                 <log>
                 </log>
                 <wait>
-                  <log>halo</log>
                   <time>2000</time>
                 </wait>
               </run>

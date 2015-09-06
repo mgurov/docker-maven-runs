@@ -70,7 +70,7 @@
                   <cmd>mvn docker:start docker:stop</cmd>
                   <log/>
                   <wait>
-                    <log>Timeout after 5\d{3} ms while waiting on log out</log>
+                    <log>Timeout after 2\d{3} ms while waiting on log out</log>
                     <time>${docker.maven.timeout}</time>
                   </wait>
                   <volumes>
@@ -97,6 +97,28 @@
                   <volumes>
                     <bind>
                       <volume>${project.basedir}/wait-noop/wait-timeout-implicit.pom.xml:/work/pom.xml</volume>
+                      <volume>${settings.localRepository}:/root/.m2/repository/</volume>
+                      <volume>/var/run/docker.sock:/var/run/docker.sock</volume>
+                    </bind>
+                  </volumes>
+                  <workingDir>/work</workingDir>
+                </run>
+              </image>
+
+              <image>
+                <alias>wait-no-checks-specified</alias>
+                <name>${docker.maven.image}</name>
+                <run>
+                  <cmd>mvn docker:start docker:stop</cmd>
+                  <log/>
+                  <wait>
+                    <log>Waited  2\d{3} ms</log>
+                    <!--<log>BUILD SUCCESS</log>-->
+                    <time>${docker.maven.timeout}</time>
+                  </wait>
+                  <volumes>
+                    <bind>
+                      <volume>${project.basedir}/wait-noop/wait-no-checks-specified.pom.xml:/work/pom.xml</volume>
                       <volume>${settings.localRepository}:/root/.m2/repository/</volume>
                       <volume>/var/run/docker.sock:/var/run/docker.sock</volume>
                     </bind>
