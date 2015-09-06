@@ -134,7 +134,7 @@
                   <cmd>mvn docker:start docker:stop</cmd>
                   <log/>
                   <wait>
-                    <log>Waited  2\d{3} ms</log>
+                    <log>Waited 2000 ms</log>
                     <!--<log>BUILD SUCCESS</log>-->
                     <time>${docker.maven.timeout}</time>
                   </wait>
