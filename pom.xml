@@ -11,8 +11,8 @@
   <packaging>pom</packaging>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <docker.maven.image>maven:3.2.3-jdk-7</docker.maven.image>
+    <docker.maven.timeout>20000</docker.maven.timeout>
   </properties>
 
   <build>
@@ -158,12 +158,13 @@
 
             <image>
               <alias>fail-on-empty-run-cmd</alias>
-              <name>maven:3.2.3-jdk-7</name>
+              <name>${docker.maven.image}</name>
               <run>
                 <cmd>mvn docker:start</cmd>
                 <log/>
                 <wait>
                   <log>failed: Argument conflict: either shell or args should be specified and only in one form.</log>
+                  <time>${docker.maven.timeout}</time>
                 </wait>
                 <volumes>
                   <bind>
@@ -177,12 +178,13 @@
 
             <image>
               <alias>fail-on-empty-run-entrypoint</alias>
-              <name>maven:3.2.3-jdk-7</name>
+              <name>${docker.maven.image}</name>
               <run>
                 <cmd>mvn docker:start</cmd>
                 <log/>
                 <wait>
                   <log>failed: Argument conflict: either shell or args should be specified and only in one form.</log>
+                  <time>${docker.maven.timeout}</time>
                 </wait>
                 <volumes>
                   <bind>
@@ -196,12 +198,13 @@
 
             <image>
               <alias>fail-on-build-entrypoint-both-shell-and-exec</alias>
-              <name>maven:3.2.3-jdk-7</name>
+              <name>${docker.maven.image}</name>
               <run>
                 <cmd>mvn docker:build</cmd>
                 <log/>
                 <wait>
                   <log>failed: Argument conflict: either shell or args should be specified and only in one form.</log>
+                  <time>${docker.maven.timeout}</time>
                 </wait>
                 <volumes>
                   <bind>
@@ -271,12 +274,13 @@
 
             <image>
               <alias>build-entrypoint-exec-both-inlined-and-full</alias>
-              <name>maven:3.2.3-jdk-7</name>
+              <name>${docker.maven.image}</name>
               <run>
                 <cmd>mvn docker:build</cmd>
                 <log/>
                 <wait>
                   <log>failed: Argument conflict: either shell or args should be specified and only in one form.</log>
+                  <time>${docker.maven.timeout}</time>
                 </wait>
                 <volumes>
                   <bind>
