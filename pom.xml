@@ -62,29 +62,41 @@
           <artifactId>docker-maven-plugin</artifactId>
           <configuration>
             <images>
+
               <image>
-                <name>busybox</name>
+                <alias>wait-timeout-specified</alias>
+                <name>${docker.maven.image}</name>
                 <run>
-                  <cmd>echo run cmd shell inline</cmd>
-                  <log>
-                    <prefix>RCSI</prefix>
-                  </log>
+                  <cmd>mvn docker:start docker:stop</cmd>
+                  <log/>
                   <wait>
-                    <log>run cmd shell inline</log>
+                    <log>Timeout after 5\d{3} ms while waiting on log out</log>
+                    <time>${docker.maven.timeout}</time>
                   </wait>
+                  <volumes>
+                    <bind>
+                      <volume>${project.basedir}/wait-noop/wait-timeout-specified.pom.xml:/work/pom.xml</volume>
+                      <volume>${settings.localRepository}:/root/.m2/repository/</volume>
+                      <volume>/var/run/docker.sock:/var/run/docker.sock</volume>
+                    </bind>
+                  </volumes>
+                  <workingDir>/work</workingDir>
                 </run>
               </image>
-              <image>
-                <name>busybox</name>
-                <run>
-                  <cmd>echo run cmd shell inline</cmd>
-                  <log>
-                    <prefix>RCSI</prefix>
-                  </log>
-                  <wait>
-                  </wait>
-                </run>
-              </image>
+
+              <!--
+                            <image>
+                              <name>busybox</name>
+                              <run>
+                                <cmd>echo run cmd shell inline</cmd>
+                                <log>
+                                  <prefix>RCSI</prefix>
+                                </log>
+                                <wait>
+                                </wait>
+                              </run>
+                            </image>
+              -->
 
             </images>
           </configuration>

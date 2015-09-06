@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!--
+     Simple demo project demonstrating the usage of rhuss/docker-maven-plugin
+  -->
+  <groupId>com.github.mgurov</groupId>
+  <artifactId>docker-maven-runs</artifactId>
+  <version>0.0.1</version>
+  <packaging>pom</packaging>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jolokia</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <version>0.13.4-SNAPSHOT</version>
+        <configuration>
+          <images>
+
+            <image>
+              <name>busybox</name>
+              <run>
+                <cmd>echo hello</cmd>
+                <log>
+                </log>
+                <wait>
+                  <log>halo</log>
+                  <time>5000</time>
+                </wait>
+              </run>
+            </image>
+
+          </images>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
