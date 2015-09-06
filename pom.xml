@@ -11,7 +11,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <docker.maven.image>maven:3.2.3-jdk-7</docker.maven.image>
+    <docker.maven.image>maven:3.3.3-jdk-7</docker.maven.image>
     <docker.maven.timeout>20000</docker.maven.timeout>
   </properties>
 
