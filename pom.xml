@@ -24,107 +24,6 @@
         <configuration>
           <images>
 
-            <image>
-              <alias>good</alias>
-              <name>${docker.maven.image}</name>
-              <run>
-                <cmd>mvn verify</cmd>
-                <log/>
-                <wait>
-                  <log>\[INFO\] BUILD SUCCESS</log>
-                  <time>${docker.maven.timeout}</time>
-                </wait>
-                <volumes>
-                  <bind>
-                    <volume>${project.basedir}/expected-to-succeed/pom.xml:/work/pom.xml</volume>
-                    <volume>${settings.localRepository}:/root/.m2/repository/</volume>
-                    <volume>/var/run/docker.sock:/var/run/docker.sock</volume>
-                  </bind>
-                </volumes>
-                <workingDir>/work</workingDir>
-              </run>
-            </image>
-
-            <image>
-              <alias>fail-on-empty-run-cmd</alias>
-              <name>${docker.maven.image}</name>
-              <run>
-                <cmd>mvn docker:start</cmd>
-                <log/>
-                <wait>
-                  <log>failed: Argument conflict: either shell or args should be specified and only in one form.</log>
-                  <time>${docker.maven.timeout}</time>
-                </wait>
-                <volumes>
-                  <bind>
-                    <volume>${project.basedir}/expected-to-fail/empty-run-cmd.pom.xml:/work/pom.xml</volume>
-                    <volume>${settings.localRepository}:/root/.m2/repository/</volume>
-                  </bind>
-                </volumes>
-                <workingDir>/work</workingDir>
-              </run>
-            </image>
-
-            <image>
-              <alias>fail-on-empty-run-entrypoint</alias>
-              <name>${docker.maven.image}</name>
-              <run>
-                <cmd>mvn docker:start</cmd>
-                <log/>
-                <wait>
-                  <log>failed: Argument conflict: either shell or args should be specified and only in one form.</log>
-                  <time>${docker.maven.timeout}</time>
-                </wait>
-                <volumes>
-                  <bind>
-                    <volume>${project.basedir}/expected-to-fail/empty-run-entrypoint.pom.xml:/work/pom.xml</volume>
-                    <volume>${settings.localRepository}:/root/.m2/repository/</volume>
-                  </bind>
-                </volumes>
-                <workingDir>/work</workingDir>
-              </run>
-            </image>
-
-            <image>
-              <alias>fail-on-build-entrypoint-both-shell-and-exec</alias>
-              <name>${docker.maven.image}</name>
-              <run>
-                <cmd>mvn docker:build</cmd>
-                <log/>
-                <wait>
-                  <log>failed: Argument conflict: either shell or args should be specified and only in one form.</log>
-                  <time>${docker.maven.timeout}</time>
-                </wait>
-                <volumes>
-                  <bind>
-                    <volume>${project.basedir}/expected-to-fail/build-entrypoint-both-shell-and-exec.pom.xml:/work/pom.xml</volume>
-                    <volume>${settings.localRepository}:/root/.m2/repository/</volume>
-                  </bind>
-                </volumes>
-                <workingDir>/work</workingDir>
-              </run>
-            </image>
-
-            <image>
-              <alias>build-entrypoint-exec-both-inlined-and-full</alias>
-              <name>${docker.maven.image}</name>
-              <run>
-                <cmd>mvn docker:build</cmd>
-                <log/>
-                <wait>
-                  <log>failed: Argument conflict: either shell or args should be specified and only in one form.</log>
-                  <time>${docker.maven.timeout}</time>
-                </wait>
-                <volumes>
-                  <bind>
-                    <volume>${project.basedir}/expected-to-fail/build-entrypoint-exec-both-inlined-and-full.pom.xml:/work/pom.xml</volume>
-                    <volume>${settings.localRepository}:/root/.m2/repository/</volume>
-                  </bind>
-                </volumes>
-                <workingDir>/work</workingDir>
-              </run>
-            </image>
-
           </images>
         </configuration>
         <executions>
@@ -147,5 +46,151 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+
+      <id>noopLogs</id>
+      <activation>
+        <property><name>runAll</name></property>
+      </activation>
+
+      <build>
+        <plugins>
+          <plugin>
+          <groupId>org.jolokia</groupId>
+          <artifactId>docker-maven-plugin</artifactId>
+          <configuration>
+            <images>
+              <image>
+                <alias>good</alias>
+                <name>${docker.maven.image}</name>
+                <run>
+                  <cmd>mvn verify</cmd>
+                  <log/>
+                  <wait>
+                    <log>\[INFO\] BUILD SUCCESS</log>
+                    <time>${docker.maven.timeout}</time>
+                  </wait>
+                  <volumes>
+                    <bind>
+                      <volume>${project.basedir}/expected-to-succeed/pom.xml:/work/pom.xml</volume>
+                      <volume>${settings.localRepository}:/root/.m2/repository/</volume>
+                      <volume>/var/run/docker.sock:/var/run/docker.sock</volume>
+                    </bind>
+                  </volumes>
+                  <workingDir>/work</workingDir>
+                </run>
+              </image>
+            </images>
+          </configuration>
+          </plugin>
+        </plugins>
+      </build>
+
+    </profile>
+
+    <profile>
+
+      <id>fullExecOnStart</id>
+      <activation>
+        <property><name>runAll</name></property>
+      </activation>
+
+      <build>
+        <plugins>
+          <plugin>
+          <groupId>org.jolokia</groupId>
+          <artifactId>docker-maven-plugin</artifactId>
+          <configuration>
+            <images>
+              <image>
+                <alias>fail-on-empty-run-cmd</alias>
+                <name>${docker.maven.image}</name>
+                <run>
+                  <cmd>mvn docker:start</cmd>
+                  <log/>
+                  <wait>
+                    <log>failed: Argument conflict: either shell or args should be specified and only in one form.</log>
+                    <time>${docker.maven.timeout}</time>
+                  </wait>
+                  <volumes>
+                    <bind>
+                      <volume>${project.basedir}/expected-to-fail/empty-run-cmd.pom.xml:/work/pom.xml</volume>
+                      <volume>${settings.localRepository}:/root/.m2/repository/</volume>
+                    </bind>
+                  </volumes>
+                  <workingDir>/work</workingDir>
+                </run>
+              </image>
+
+              <image>
+                <alias>fail-on-empty-run-entrypoint</alias>
+                <name>${docker.maven.image}</name>
+                <run>
+                  <cmd>mvn docker:start</cmd>
+                  <log/>
+                  <wait>
+                    <log>failed: Argument conflict: either shell or args should be specified and only in one form.</log>
+                    <time>${docker.maven.timeout}</time>
+                  </wait>
+                  <volumes>
+                    <bind>
+                      <volume>${project.basedir}/expected-to-fail/empty-run-entrypoint.pom.xml:/work/pom.xml</volume>
+                      <volume>${settings.localRepository}:/root/.m2/repository/</volume>
+                    </bind>
+                  </volumes>
+                  <workingDir>/work</workingDir>
+                </run>
+              </image>
+
+              <image>
+                <alias>fail-on-build-entrypoint-both-shell-and-exec</alias>
+                <name>${docker.maven.image}</name>
+                <run>
+                  <cmd>mvn docker:build</cmd>
+                  <log/>
+                  <wait>
+                    <log>failed: Argument conflict: either shell or args should be specified and only in one form.</log>
+                    <time>${docker.maven.timeout}</time>
+                  </wait>
+                  <volumes>
+                    <bind>
+                      <volume>${project.basedir}/expected-to-fail/build-entrypoint-both-shell-and-exec.pom.xml:/work/pom.xml</volume>
+                      <volume>${settings.localRepository}:/root/.m2/repository/</volume>
+                    </bind>
+                  </volumes>
+                  <workingDir>/work</workingDir>
+                </run>
+              </image>
+
+              <image>
+                <alias>build-entrypoint-exec-both-inlined-and-full</alias>
+                <name>${docker.maven.image}</name>
+                <run>
+                  <cmd>mvn docker:build</cmd>
+                  <log/>
+                  <wait>
+                    <log>failed: Argument conflict: either shell or args should be specified and only in one form.</log>
+                    <time>${docker.maven.timeout}</time>
+                  </wait>
+                  <volumes>
+                    <bind>
+                      <volume>${project.basedir}/expected-to-fail/build-entrypoint-exec-both-inlined-and-full.pom.xml:/work/pom.xml</volume>
+                      <volume>${settings.localRepository}:/root/.m2/repository/</volume>
+                    </bind>
+                  </volumes>
+                  <workingDir>/work</workingDir>
+                </run>
+              </image>
+
+            </images>
+          </configuration>
+          </plugin>
+        </plugins>
+      </build>
+
+    </profile>
+  </profiles>
 
 </project>
