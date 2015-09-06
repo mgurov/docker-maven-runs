@@ -1,0 +1,235 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!--
+     Simple demo project demonstrating the usage of rhuss/docker-maven-plugin
+  -->
+  <groupId>com.github.mgurov</groupId>
+  <artifactId>docker-maven-runs</artifactId>
+  <version>0.0.1</version>
+  <packaging>pom</packaging>
+
+  <properties>
+    <docker.maven.image>maven:3.3.3-jdk-7</docker.maven.image>
+    <docker.maven.timeout>20000</docker.maven.timeout>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jolokia</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <version>0.13.4-SNAPSHOT</version>
+        <configuration>
+          <images>
+
+            <image>
+              <name>local/bes</name>
+              <build>
+                <entryPoint>
+                  <shell>echo build entrypoint shell</shell>
+                </entryPoint>
+              </build>
+              <run>
+                <log>
+                  <prefix>BES</prefix>
+                </log>
+                <wait>
+                  <log>build entrypoint shell</log>
+                </wait>
+              </run>
+            </image>
+
+            <image>
+              <name>local/bee</name>
+              <build>
+                <entryPoint>
+                  <exec>
+                    <arg>echo</arg>
+                    <arg>build</arg>
+                    <arg>entrypoint</arg>
+                    <arg>exec</arg>
+                  </exec>
+                </entryPoint>
+              </build>
+              <run>
+                <log>
+                  <prefix>BEE</prefix>
+                </log>
+                <wait>
+                  <log>build entrypoint exec</log>
+                </wait>
+              </run>
+            </image>
+
+            <image>
+              <name>local/bcs</name>
+              <build>
+                <cmd>
+                  <shell>echo build cmd shell</shell>
+                </cmd>
+              </build>
+              <run>
+                <log>
+                  <prefix>BCS</prefix>
+                </log>
+                <wait>
+                  <log>build cmd shell</log>
+                </wait>
+              </run>
+            </image>
+
+            <image>
+              <name>local/bce</name>
+              <build>
+                <cmd>
+                  <exec>
+                    <arg>echo</arg>
+                    <arg>build</arg>
+                    <arg>cmd</arg>
+                    <arg>exec</arg>
+                  </exec>
+                </cmd>
+              </build>
+              <run>
+                <log>
+                  <prefix>BCE</prefix>
+                </log>
+                <wait>
+                  <log>build cmd exec</log>
+                </wait>
+              </run>
+            </image>
+
+            <image>
+              <name>busybox</name>
+              <run>
+                <entrypoint>echo run entrypoint shell inline</entrypoint>
+                <log>
+                  <prefix>RESI</prefix>
+                </log>
+                <wait>
+                  <log>run entrypoint shell inline</log>
+                </wait>
+              </run>
+            </image>
+
+
+            <image>
+              <name>busybox</name>
+              <run>
+                <cmd>echo run cmd shell inline</cmd>
+                <log>
+                  <prefix>RCSI</prefix>
+                </log>
+                <wait>
+                  <log>run cmd shell inline</log>
+                </wait>
+              </run>
+            </image>
+
+            <image>
+              <name>local/blc</name>
+              <build>
+                <command>echo build legacy command</command>
+              </build>
+              <run>
+                <log>
+                  <prefix>BLC</prefix>
+                </log>
+                <wait>
+                  <log>build legacy command</log>
+                </wait>
+              </run>
+            </image>
+
+            <image>
+              <name>busybox</name>
+              <run>
+                <log>
+                  <prefix>NOOP</prefix>
+                </log>
+              </run>
+            </image>
+
+   <!-- better config -->
+
+            <image>
+              <name>local/besi</name>
+              <build>
+                <entryPoint>echo build entrypoint shell inlined</entryPoint>
+              </build>
+              <run>
+                <log>
+                  <prefix>BESI</prefix>
+                </log>
+                <wait>
+                  <log>build entrypoint shell inlined</log>
+                </wait>
+              </run>
+            </image>
+
+            <image>
+              <name>local/beei</name>
+              <build>
+                <entryPoint>
+                  <arg>echo</arg>
+                  <arg>build</arg>
+                  <arg>entrypoint</arg>
+                  <arg>exec</arg>
+                  <arg>inlined</arg>
+                </entryPoint>
+              </build>
+              <run>
+                <log>
+                  <prefix>BEEI</prefix>
+                </log>
+                <wait>
+                  <log>build entrypoint exec inlined</log>
+                </wait>
+              </run>
+            </image>
+
+            <image>
+              <name>local/besi-twice</name>
+              <build>
+                <entryPoint>
+                  echo build entrypoint shell inlined
+                  <shell>echo inlined shell ignored</shell>
+                </entryPoint>
+              </build>
+              <run>
+                <log>
+                  <prefix>BESI-TWICE</prefix>
+                </log>
+                <wait>
+                  <log>inlined shell ignored</log>
+                </wait>
+              </run>
+            </image>
+
+          </images>
+        </configuration>
+        <executions>
+          <execution>
+            <id>start</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>build</goal>
+              <goal>start</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>stop</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>stop</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
