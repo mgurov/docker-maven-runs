@@ -84,19 +84,26 @@
                 </run>
               </image>
 
-              <!--
-                            <image>
-                              <name>busybox</name>
-                              <run>
-                                <cmd>echo run cmd shell inline</cmd>
-                                <log>
-                                  <prefix>RCSI</prefix>
-                                </log>
-                                <wait>
-                                </wait>
-                              </run>
-                            </image>
-              -->
+              <image>
+                <alias>wait-timeout-implicit</alias>
+                <name>${docker.maven.image}</name>
+                <run>
+                  <cmd>mvn docker:start docker:stop</cmd>
+                  <log/>
+                  <wait>
+                    <log>Timeout after 10\d{3} ms while waiting on log out</log>
+                    <time>${docker.maven.timeout}</time>
+                  </wait>
+                  <volumes>
+                    <bind>
+                      <volume>${project.basedir}/wait-noop/wait-timeout-implicit.pom.xml:/work/pom.xml</volume>
+                      <volume>${settings.localRepository}:/root/.m2/repository/</volume>
+                      <volume>/var/run/docker.sock:/var/run/docker.sock</volume>
+                    </bind>
+                  </volumes>
+                  <workingDir>/work</workingDir>
+                </run>
+              </image>
 
             </images>
           </configuration>
