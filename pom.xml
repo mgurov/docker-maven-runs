@@ -127,6 +127,28 @@
                 </run>
               </image>
 
+              <image>
+                <alias>dont-wait-no-time-specified</alias>
+                <name>${docker.maven.image}</name>
+                <run>
+                  <cmd>mvn docker:start docker:stop</cmd>
+                  <log/>
+                  <wait>
+                    <!--<fail>Waited  2\d{3} ms</fail>-->
+                    <log>\[INFO\] BUILD SUCCESS</log>
+                    <time>${docker.maven.timeout}</time>
+                  </wait>
+                  <volumes>
+                    <bind>
+                      <volume>${project.basedir}/wait-noop/dont-wait-no-time-specified.pom.xml:/work/pom.xml</volume>
+                      <volume>${settings.localRepository}:/root/.m2/repository/</volume>
+                      <volume>/var/run/docker.sock:/var/run/docker.sock</volume>
+                    </bind>
+                  </volumes>
+                  <workingDir>/work</workingDir>
+                </run>
+              </image>
+
             </images>
           </configuration>
           </plugin>
