@@ -153,9 +153,6 @@
               </run>
             </image>
 
-
-            <!-- validation FAIL expected -->
-
             <image>
               <alias>fail-on-empty-run-cmd</alias>
               <name>${docker.maven.image}</name>
