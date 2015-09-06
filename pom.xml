@@ -12,7 +12,7 @@
 
   <properties>
     <docker.maven.image>maven:3.3.3-jdk-7</docker.maven.image>
-    <docker.maven.timeout>20000</docker.maven.timeout>
+    <docker.maven.timeout>50000</docker.maven.timeout>
   </properties>
 
   <build>
@@ -31,7 +31,7 @@
                 <cmd>mvn verify</cmd>
                 <log/>
                 <wait>
-                  <log>BUILD SUCCESS</log>
+                  <log>\[INFO\] BUILD SUCCESS</log>
                   <time>${docker.maven.timeout}</time>
                 </wait>
                 <volumes>
