@@ -63,25 +63,29 @@
           <configuration>
             <images>
               <image>
-                <alias>good</alias>
-                <name>${docker.maven.image}</name>
+                <name>busybox</name>
                 <run>
-                  <cmd>mvn verify</cmd>
-                  <log/>
+                  <cmd>echo run cmd shell inline</cmd>
+                  <log>
+                    <prefix>RCSI</prefix>
+                  </log>
                   <wait>
-                    <log>\[INFO\] BUILD SUCCESS</log>
-                    <time>${docker.maven.timeout}</time>
+                    <log>run cmd shell inline</log>
                   </wait>
-                  <volumes>
-                    <bind>
-                      <volume>${project.basedir}/expected-to-succeed/pom.xml:/work/pom.xml</volume>
-                      <volume>${settings.localRepository}:/root/.m2/repository/</volume>
-                      <volume>/var/run/docker.sock:/var/run/docker.sock</volume>
-                    </bind>
-                  </volumes>
-                  <workingDir>/work</workingDir>
                 </run>
               </image>
+              <image>
+                <name>busybox</name>
+                <run>
+                  <cmd>echo run cmd shell inline</cmd>
+                  <log>
+                    <prefix>RCSI</prefix>
+                  </log>
+                  <wait>
+                  </wait>
+                </run>
+              </image>
+
             </images>
           </configuration>
           </plugin>
@@ -104,6 +108,26 @@
           <artifactId>docker-maven-plugin</artifactId>
           <configuration>
             <images>
+              <image>
+                <alias>good</alias>
+                <name>${docker.maven.image}</name>
+                <run>
+                  <cmd>mvn verify</cmd>
+                  <log/>
+                  <wait>
+                    <log>\[INFO\] BUILD SUCCESS</log>
+                    <time>${docker.maven.timeout}</time>
+                  </wait>
+                  <volumes>
+                    <bind>
+                      <volume>${project.basedir}/expected-to-succeed/pom.xml:/work/pom.xml</volume>
+                      <volume>${settings.localRepository}:/root/.m2/repository/</volume>
+                      <volume>/var/run/docker.sock:/var/run/docker.sock</volume>
+                    </bind>
+                  </volumes>
+                  <workingDir>/work</workingDir>
+                </run>
+              </image>
               <image>
                 <alias>fail-on-empty-run-cmd</alias>
                 <name>${docker.maven.image}</name>
