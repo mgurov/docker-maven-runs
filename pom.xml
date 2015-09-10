@@ -159,6 +159,49 @@
 
     <profile>
 
+      <id>failLog</id>
+      <activation>
+        <property>
+          <name>runAll</name>
+        </property>
+      </activation>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jolokia</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <configuration>
+              <images>
+                <image>
+                  <alias>fail-on-log-capture</alias>
+                  <name>${docker.maven.image}</name>
+                  <run>
+                    <cmd>mvn docker:start</cmd>
+                    <log/>
+                    <wait>
+                      <log>\[INFO\] BUILD FAILURE</log>
+                      <time>${docker.maven.timeout}</time>
+                    </wait>
+                    <volumes>
+                      <bind>
+                        <volume>${project.basedir}/expected-to-succeed/pom.xml:/work/pom.xml</volume>
+                        <volume>${settings.localRepository}:/root/.m2/repository/</volume>
+                        <volume>/var/run/docker.sock:/var/run/docker.sock</volume>
+                      </bind>
+                    </volumes>
+                    <workingDir>/work</workingDir>
+                  </run>
+                </image>
+              </images>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+
       <id>fullExecOnStart</id>
       <activation>
         <property><name>runAll</name></property>
