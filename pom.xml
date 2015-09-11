@@ -174,7 +174,7 @@
             <configuration>
               <images>
                 <image>
-                  <alias>fail-on-log-capture</alias>
+                  <alias>fail-on-log</alias>
                   <name>${docker.maven.image}</name>
                   <run>
                     <cmd>mvn docker:start</cmd>
@@ -185,7 +185,7 @@
                     </wait>
                     <volumes>
                       <bind>
-                        <volume>${project.basedir}/expected-to-succeed/pom.xml:/work/pom.xml</volume>
+                        <volume>${project.basedir}/fail-log/fail-on-log.xml:/work/pom.xml</volume>
                         <volume>${settings.localRepository}:/root/.m2/repository/</volume>
                         <volume>/var/run/docker.sock:/var/run/docker.sock</volume>
                       </bind>
