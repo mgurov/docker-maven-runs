@@ -193,14 +193,6 @@
                     <workingDir>/work</workingDir>
                   </run>
                 </image>
-              </images>
-            </configuration>
-          </plugin>
-          <plugin>
-            <groupId>org.jolokia</groupId>
-            <artifactId>docker-maven-plugin</artifactId>
-            <configuration>
-              <images>
                 <image>
                   <alias>fail-on-fail-before-log</alias>
                   <name>${docker.maven.image}</name>
@@ -213,7 +205,27 @@
                     </wait>
                     <volumes>
                       <bind>
-                        <volume>${project.basedir}/fail-log/fail-on-fail-before-log:/work/pom.xml</volume>
+                        <volume>${project.basedir}/fail-log/fail-on-fail-before-log.xml:/work/pom.xml</volume>
+                        <volume>${settings.localRepository}:/root/.m2/repository/</volume>
+                        <volume>/var/run/docker.sock:/var/run/docker.sock</volume>
+                      </bind>
+                    </volumes>
+                    <workingDir>/work</workingDir>
+                  </run>
+                </image>
+                <image>
+                  <alias>ok-unmatched-fail-after-time</alias>
+                  <name>${docker.maven.image}</name>
+                  <run>
+                    <cmd>mvn docker:start</cmd>
+                    <log/>
+                    <wait>
+                      <log>\[INFO\] BUILD SUCCESS</log>
+                      <time>${docker.maven.timeout}</time>
+                    </wait>
+                    <volumes>
+                      <bind>
+                        <volume>${project.basedir}/fail-log/ok-unmatched-fail-after-time.xml:/work/pom.xml</volume>
                         <volume>${settings.localRepository}:/root/.m2/repository/</volume>
                         <volume>/var/run/docker.sock:/var/run/docker.sock</volume>
                       </bind>
