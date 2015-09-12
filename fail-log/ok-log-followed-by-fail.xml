@@ -32,6 +32,7 @@
                 <wait>
                   <fail>later</fail>
                   <log>woke up</log>
+                  <time>5000</time>
                 </wait>
               </run>
             </image>
